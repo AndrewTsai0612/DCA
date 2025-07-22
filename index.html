@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>DCA 計算器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main-content">
+    <div class="header">
+      <h1>DCA計算器</h1>
+      <p>模擬您對比特幣和以太坊的平均成本法 (DCA) 投資表現。了解持續投資如何隨著時間增長您的投資組合。</p>
+    </div>
+
+    <div class="container">
+      <!-- 左：投資設定 -->
+      <div class="panel settings">
+        <h2>投資設定</h2>
+        <p class="subtitle">配置您的平均成本法參數。</p>
+        
+        <div class="row">
+          <label>加密貨幣</label>
+          <div class="coin-selector">
+            <input type="radio" id="btc" name="coin" value="BTCUSDT" checked>
+            <label for="btc">₿ 比特幣</label>
+            <input type="radio" id="eth" name="coin" value="ETHUSDT">
+            <label for="eth">⧫ 以太坊</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <label for="amount">每次投資金額 (USD)</label>
+          <input type="number" id="amount" min="1" value="100">
+        </div>
+
+        <div class="row">
+          <label>投資頻率</label>
+          <div class="freq-group">
+            <label><input type="radio" name="freq" value="daily">每日</label>
+            <label><input type="radio" name="freq" value="weekly" checked>每週</label>
+            <label><input type="radio" name="freq" value="biweekly">每兩週</label>
+            <label><input type="radio" name="freq" value="monthly">每月</label>
+          </div>
+        </div>
+        
+        <div class="date-group">
+            <div class="row">
+              <label for="start">開始日期</label>
+              <input type="date" id="start">
+            </div>
+            <div class="row">
+              <label for="end">結束日期</label>
+              <input type="date" id="end">
+            </div>
+        </div>
+
+        <button id="calcBtn">計算表現</button>
+        <div id="errMsg" class="error"></div>
+      </div>
+
+      <!-- 右：結果與圖表 -->
+      <div class="results">
+        <div class="cards">
+          <div class="card"><span>總投入金額</span><h3 id="totalInvested">$0</h3></div>
+          <div class="card"><span>投資組合價值</span><h3 id="portfolioValue">$0</h3></div>
+          <div class="card"><span>利潤／虧損</span><h3 id="profit" class="profit">$0</h3></div>
+          <div class="card"><span>報酬率</span><h3 id="performance">0%</h3></div>
+        </div>
+        <div class="panel chart-area">
+          <h2>投資組合增長</h2>
+          <p class="subtitle">視覺化您的長期投資過程。</p>
+          <canvas id="chart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

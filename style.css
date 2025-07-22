@@ -1,0 +1,244 @@
+/* --- 全局與基礎設定 --- */
+:root {
+  --primary-color: #00b8d4; /* 主題色 (青色) */
+  --panel-bg: #ffffff;
+  --body-bg: #f7f9fc;
+  --text-primary: #1a202c;
+  --text-secondary: #718096;
+  --border-color: #e2e8f0;
+  --success-color: #38a169;
+  --danger-color: #e53e3e;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--body-bg);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.main-content {
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* --- 頂部標題 --- */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+}
+.header p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: auto;
+}
+
+/* --- 主容器 --- */
+.container {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.settings {
+  flex: 0 0 320px;
+}
+
+.results {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* --- 卡片與面板樣式 --- */
+.panel {
+  background: var(--panel-bg);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+  border: 1px solid var(--border-color);
+}
+
+.panel h2 {
+  font-size: 1.25rem;
+  margin-bottom: 4px;
+}
+
+.panel .subtitle {
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+/* --- 表單元素 --- */
+.row {
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 8px;
+}
+
+input[type="number"], input[type="date"] {
+  font-size: 1rem;
+  padding: 10px 14px;
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: #f7fafc;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+input[type="number"]:focus, input[type="date"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(0, 184, 212, 0.2);
+}
+
+.date-group {
+    display: flex;
+    gap: 16px;
+}
+
+/* --- 加密貨幣選擇器 (關鍵樣式) --- */
+.coin-selector {
+  display: flex;
+  width: 100%;
+  background-color: #edf2f7;
+  border-radius: 10px;
+  padding: 4px;
+}
+.coin-selector input[type="radio"] {
+  display: none; /* 隱藏原始的radio按鈕 */
+}
+.coin-selector label {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.coin-selector input[type="radio"]:checked + label {
+  background-color: var(--panel-bg);
+  color: var(--text-primary);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* --- 投資頻率選擇器 --- */
+.freq-group {
+  display: flex;
+  justify-content: space-between;
+}
+.freq-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+/* --- 計算按鈕 --- */
+button#calcBtn {
+  width: 100%;
+  padding: 14px;
+  background: var(--primary-color);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+}
+button#calcBtn:hover {
+  background: #00a8c1;
+}
+button#calcBtn:disabled {
+  background: #9ca3af;
+  cursor: wait;
+}
+
+.error {
+  color: var(--danger-color);
+  font-size: 0.9rem;
+  margin-top: 12px;
+  min-height: 1.2em;
+}
+
+/* --- 結果卡片區 --- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.card {
+  background: var(--panel-bg);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+}
+.card span {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.card h3 {
+  font-size: 1.75rem;
+  margin-top: 4px;
+}
+.profit { color: var(--success-color); }
+.loss { color: var(--danger-color); }
+
+/* --- 圖表區 --- */
+.chart-area {
+  padding: 28px;
+}
+#chart {
+  max-height: 350px;
+}
+
+/* --- RWD 響應式設計 --- */
+@media (max-width: 960px) {
+  .container {
+    flex-direction: column;
+  }
+  .settings {
+    flex: 1;
+    width: 100%;
+  }
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  body {
+    padding: 20px 10px;
+  }
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .header h1 {
+    font-size: 2rem;
+  }
+}
